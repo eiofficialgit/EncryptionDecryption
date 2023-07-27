@@ -11,4 +11,9 @@ public interface EncryptionService {
 	
 	public TokenResponse encode(Token token);
 	public Token decode (String token);
+
+	public String encodeKey(String secretKey);
+	public String decodeKey(String secretKey);
+	public String encrypted(String encode, String encodeKey) throws Exception;
+	public String decrypted(String decode, String encodeKey) throws Exception;
 }

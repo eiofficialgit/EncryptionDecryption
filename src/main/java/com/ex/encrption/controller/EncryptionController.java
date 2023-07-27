@@ -50,15 +50,15 @@ public class EncryptionController {
 
 	String secretKey = "mustbe16byteskey";
 	
-	@PostMapping("/encode")
-	public String encode(@RequestParam String encode) throws Exception {
+	@GetMapping("/encode")
+	public String encode(@RequestParam("encode") String encode) throws Exception {
 		String encodeKey = encryptionService.encodeKey(secretKey);
 		String encrypt = encryptionService.encrypted(encode, encodeKey);
 		return encrypt;
 	}
 	
-	@PostMapping("/decode")
-	public String decode(@RequestParam String decode) throws Exception {
+	@GetMapping("/decode")
+	public String decode(@RequestParam("decode") String decode) throws Exception {
 		String encodeKey = encryptionService.encodeKey(secretKey);
 		String decrypt = encryptionService.decrypted(decode, encodeKey);
 		return decrypt;

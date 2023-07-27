@@ -47,4 +47,20 @@ public class EncryptionController {
 	public Token decodeToken(@RequestParam String decodeToken ) {
 		return encryptionService.decode(decodeToken);
 	}
+
+	String secretKey = "mustbe16byteskey";
+	
+	@PostMapping("/encode")
+	public String encode(@RequestParam String encode) throws Exception {
+		String encodeKey = encryptionService.encodeKey(secretKey);
+		String encrypt = encryptionService.encrypted(encode, encodeKey);
+		return encrypt;
+	}
+	
+	@PostMapping("/decode")
+	public String decode(@RequestParam String decode) throws Exception {
+		String encodeKey = encryptionService.encodeKey(secretKey);
+		String decrypt = encryptionService.decrypted(decode, encodeKey);
+		return decrypt;
+	}
 }

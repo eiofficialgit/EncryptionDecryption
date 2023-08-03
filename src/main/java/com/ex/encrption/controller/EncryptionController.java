@@ -1,4 +1,4 @@
-	package com.ex.encrption.controller;
+package com.ex.encrption.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,8 +13,8 @@ import com.ex.encrption.model.TokenResponse;
 import com.ex.encrption.service.EncryptionService;
 
 @RestController
-@RequestMapping("/api")
 @CrossOrigin("*")
+@RequestMapping("/api")
 public class EncryptionController {
 
 	@Autowired

@@ -13,9 +13,12 @@ import javax.crypto.spec.SecretKeySpec;
 
 import org.springframework.stereotype.Service;
 
+import com.ex.encrption.model.Crypt;
+import com.ex.encrption.model.Payload;
 import com.ex.encrption.model.Token;
 import com.ex.encrption.model.TokenResponse;
 import com.ex.encrption.service.EncryptionService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -162,6 +165,24 @@ public class EncryptionServiceImpl implements EncryptionService {
 	public String encodeKey(String str) {
 		byte[] encoded = Base64.getEncoder().encode(str.getBytes());
 		return new String(encoded);
+	}
+	
+	////////////////////////////payload encryption////////////////////////////
+	
+	private static final String SECRET_KEY = "bXVzdGJlMTZieXRlc2tleQ=="; // Base64 encoded "mustbe16byteskey"
+
+	public String encryptPayload(Payload payload) throws Exception {
+		String payloadJson = new ObjectMapper().writeValueAsString(payload);
+		return Crypt.encrypt(payloadJson, SECRET_KEY);
+	}
+
+	public Payload decryptPayload(String encryptedPayload) {
+		try {
+			String decryptedJson = Crypt.decrypt(encryptedPayload, SECRET_KEY);
+			return new ObjectMapper().readValue(decryptedJson, Payload.class);
+		} catch (Exception e) {
+			throw new RuntimeException("Error while decrypting payload: " + e.getMessage());
+		}
 	}
 
 }

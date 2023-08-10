@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.ex.encrption.model.EncodedPayload;
+import com.ex.encrption.model.Payload;
 import com.ex.encrption.model.Token;
 import com.ex.encrption.model.TokenResponse;
 import com.ex.encrption.service.EncryptionService;
@@ -63,4 +66,22 @@ public class EncryptionController {
 		String decrypt = encryptionService.decrypted(decode, encodeKey);
 		return decrypt;
 	}
+	
+	////////////////////////payload encryption//////////////////////
+	
+
+    @PostMapping("/encryptPayload")
+    public String encryptPayload(@RequestBody Payload payload) throws Exception {
+        return encryptionService.encryptPayload(payload);
+    }
+
+    @PostMapping("/decryptPayload")
+    public Payload decryptPayload(@RequestBody EncodedPayload encode) {
+    	String encoded = encode.getPayload();
+        return encryptionService.decryptPayload(encoded);
+    }
+	
+	
+	
+	
 }

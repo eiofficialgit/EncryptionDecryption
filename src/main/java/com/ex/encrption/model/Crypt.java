@@ -37,4 +37,20 @@ public class Crypt {
         Key key = new SecretKeySpec(decoded, ALGO);
         return key;
     }
+    
+   
+
+	public static String testingdecrypt(Object encryptedData, String secretKey) {
+		try {
+            Key key = generateKey(secretKey);
+            Cipher cipher = Cipher.getInstance(ALGO);
+            cipher.init(Cipher.DECRYPT_MODE, key);
+            byte[] decodedValue = Base64.getDecoder().decode((byte[]) encryptedData);
+            byte[] decValue = cipher.doFinal(decodedValue);
+            return new String(decValue);
+        } catch (Exception e) {
+            System.out.println("Error while decrypting: " + e.toString());
+        }
+        return null;
+	}
 }

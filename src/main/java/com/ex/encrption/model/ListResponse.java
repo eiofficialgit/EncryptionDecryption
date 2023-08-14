@@ -5,10 +5,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class EncodedPayload {
+@NoArgsConstructor
+public class ListResponse {
 	
-	private String payload;
+	private String data;
 
 }

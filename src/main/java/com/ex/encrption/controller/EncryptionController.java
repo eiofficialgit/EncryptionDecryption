@@ -19,6 +19,7 @@ import com.ex.encrption.model.ListResponse;
 import com.ex.encrption.model.Payload;
 import com.ex.encrption.model.Token;
 import com.ex.encrption.model.TokenResponse;
+import com.ex.encrption.model.validationModel;
 import com.ex.encrption.service.EncryptionService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -100,5 +101,18 @@ public class EncryptionController {
 //		Payload readValue = objectMapper.readValue(payload, Payload.class);
 		return stringList;
 	}
+	
+	@PostMapping("/encryptValidation")
+	public String encryptValidation(@RequestBody validationModel payload) throws Exception {
+		return encryptionService.encryptValidationPayload(payload);
+	}
+	
+	@PostMapping("/decryptValidation")
+	public validationModel decryptValidation(@RequestBody EncodedPayload encode) {
+		String encoded = encode.getPayload();
+		return encryptionService.decryptValidationPayload(encoded);
+	}
+	
+
 
 }

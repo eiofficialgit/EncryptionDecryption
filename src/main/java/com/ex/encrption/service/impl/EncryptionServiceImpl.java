@@ -18,6 +18,7 @@ import com.ex.encrption.model.ListResponse;
 import com.ex.encrption.model.Payload;
 import com.ex.encrption.model.Token;
 import com.ex.encrption.model.TokenResponse;
+import com.ex.encrption.model.validationModel;
 import com.ex.encrption.service.EncryptionService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -181,6 +182,22 @@ public class EncryptionServiceImpl implements EncryptionService {
 		try {
 			String decryptedJson = Crypt.decrypt(encryptedPayload, SECRET_KEY);
 			return new ObjectMapper().readValue(decryptedJson, Payload.class);
+		} catch (Exception e) {
+			throw new RuntimeException("Error while decrypting payload: " + e.getMessage());
+		}
+	}
+
+	@Override
+	public String encryptValidationPayload(validationModel payload) throws Exception {
+		String payloadJson = new ObjectMapper().writeValueAsString(payload);
+		return Crypt.encrypt(payloadJson, SECRET_KEY);
+	}
+
+	@Override
+	public validationModel decryptValidationPayload(String encoded) {
+		try {
+			String decryptedJson = Crypt.decrypt(encoded, SECRET_KEY);
+			return new ObjectMapper().readValue(decryptedJson, validationModel.class);
 		} catch (Exception e) {
 			throw new RuntimeException("Error while decrypting payload: " + e.getMessage());
 		}

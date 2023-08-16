@@ -1,6 +1,8 @@
 package com.ex.encrption.model;
 
-import java.util.Date; 
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,6 +12,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Payload {
+	
+	private int pageNumber;
+	private int pageSize;
+	private long totalElements;
+	private int totalPages;
+	private boolean lastPage;
 	
 	private String id;
 	
@@ -100,10 +108,7 @@ public class Payload {
 	
 	private Double myallPl;
 	
-	 
 	private String websiteId;
-	
-	private String websiteName;
 	
 	private String subChild;
 		

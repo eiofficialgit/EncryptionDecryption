@@ -4,6 +4,7 @@ import com.ex.encrption.model.ListResponse;
 import com.ex.encrption.model.Payload;
 import com.ex.encrption.model.Token;
 import com.ex.encrption.model.TokenResponse;
+import com.ex.encrption.model.validationModel;
 
 //encryption decryption using secrect key cipher
 public interface EncryptionService {
@@ -23,6 +24,8 @@ public interface EncryptionService {
 	
 	public String encryptPayload(Payload payload) throws Exception;
 	public Payload decryptPayload(String encoded);
+	public String encryptValidationPayload(validationModel payload) throws Exception;
+	public validationModel decryptValidationPayload(String encoded);
 	
 	
 }

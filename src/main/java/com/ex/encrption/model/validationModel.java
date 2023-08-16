@@ -16,8 +16,6 @@ public class validationModel {
 	private String firstName;
 	private String lastName;
 	private String mobileNumber;
-	private int exposureLimit;
 	private String timeZone;
-		  
-
+		 
 }

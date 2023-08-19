@@ -1,6 +1,6 @@
 package com.ex.encrption.service.impl;
 
-import java.nio.charset.StandardCharsets;
+import java.nio.charset.StandardCharsets; 
 import java.security.Key;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -14,7 +14,7 @@ import javax.crypto.spec.SecretKeySpec;
 import org.springframework.stereotype.Service;
 
 import com.ex.encrption.model.Crypt;
-import com.ex.encrption.model.ListResponse;
+import com.ex.encrption.model.DepositWithdraw;
 import com.ex.encrption.model.Payload;
 import com.ex.encrption.model.Token;
 import com.ex.encrption.model.TokenResponse;
@@ -202,6 +202,26 @@ public class EncryptionServiceImpl implements EncryptionService {
 			throw new RuntimeException("Error while decrypting payload: " + e.getMessage());
 		}
 	}
+	
+	
+	@Override
+	public String encryptDepositWithdraw(DepositWithdraw payload) throws Exception {
+		String payloadJson = new ObjectMapper().writeValueAsString(payload);
+		return Crypt.encrypt(payloadJson, SECRET_KEY);
+	}
+	
+
+	@Override
+	public DepositWithdraw decryptDepositWithdraw(String encoded) {
+		try {
+			String decryptedJson = Crypt.decrypt(encoded, SECRET_KEY);
+			return new ObjectMapper().readValue(decryptedJson, DepositWithdraw.class);
+		} catch (Exception e) {
+			throw new RuntimeException("Error while decrypting payload: " + e.getMessage());
+		}
+	}
+
+	
 
 	
 }

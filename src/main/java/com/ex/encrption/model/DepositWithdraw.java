@@ -1,14 +1,17 @@
 package com.ex.encrption.model;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class ListResponse {
+@AllArgsConstructor
+public class DepositWithdraw {
 	
-	private String data;
+	private String password;
+	private List<Payload> transactions;
 
 }

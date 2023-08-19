@@ -13,15 +13,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Payload {
 	
-	private int pageNumber;
-	private int pageSize;
-	private long totalElements;
-	private int totalPages;
-	private boolean lastPage;
-	
 	private String id;
 	
 	private String payload;
+	
+	private String type;
 	
 	private String websitename;
 	 

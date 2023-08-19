@@ -1,6 +1,6 @@
 package com.ex.encrption.controller;
 
-import java.util.ArrayList;
+import java.util.ArrayList; 
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ex.encrption.model.DepositWithdraw;
 import com.ex.encrption.model.EncodedPayload;
-import com.ex.encrption.model.ListResponse;
 import com.ex.encrption.model.Payload;
 import com.ex.encrption.model.Token;
 import com.ex.encrption.model.TokenResponse;
@@ -111,6 +111,19 @@ public class EncryptionController {
 	public validationModel decryptValidation(@RequestBody EncodedPayload encode) {
 		String encoded = encode.getPayload();
 		return encryptionService.decryptValidationPayload(encoded);
+	}
+	
+	
+	@PostMapping("/encryptDepositWithdraw")
+	public String encryptDepositWithdraw(@RequestBody DepositWithdraw payload) throws Exception {
+		return encryptionService.encryptDepositWithdraw(payload);
+	}
+	
+	
+	@PostMapping("/decryptDepositWithdraw")
+	public DepositWithdraw decryptDepositWithdraw(@RequestBody EncodedPayload encode) {
+		String encoded = encode.getPayload();
+		return encryptionService.decryptDepositWithdraw(encoded);
 	}
 	
 

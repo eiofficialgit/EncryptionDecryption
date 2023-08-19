@@ -1,6 +1,6 @@
 package com.ex.encrption.service;
-
-import com.ex.encrption.model.ListResponse;
+ 
+import com.ex.encrption.model.DepositWithdraw;
 import com.ex.encrption.model.Payload;
 import com.ex.encrption.model.Token;
 import com.ex.encrption.model.TokenResponse;
@@ -26,6 +26,8 @@ public interface EncryptionService {
 	public Payload decryptPayload(String encoded);
 	public String encryptValidationPayload(validationModel payload) throws Exception;
 	public validationModel decryptValidationPayload(String encoded);
+	public String encryptDepositWithdraw(DepositWithdraw payload) throws Exception;
+	public DepositWithdraw decryptDepositWithdraw(String encoded);
 	
 	
 }

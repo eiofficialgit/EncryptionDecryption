@@ -4,6 +4,7 @@ import com.ex.encrption.model.DepositWithdraw;
 import com.ex.encrption.model.Payload;
 import com.ex.encrption.model.Token;
 import com.ex.encrption.model.TokenResponse;
+import com.ex.encrption.model.WebsiteBean;
 import com.ex.encrption.model.validationModel;
 
 //encryption decryption using secrect key cipher
@@ -28,6 +29,8 @@ public interface EncryptionService {
 	public validationModel decryptValidationPayload(String encoded);
 	public String encryptDepositWithdraw(DepositWithdraw payload) throws Exception;
 	public DepositWithdraw decryptDepositWithdraw(String encoded);
+	public String encryptWebsite(WebsiteBean webbean) throws Exception;
+	public WebsiteBean decryptWebsite(String encoded);
 	
 	
 }

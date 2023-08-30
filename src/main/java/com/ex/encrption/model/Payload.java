@@ -19,7 +19,9 @@ public class Payload {
 	
 	private String type;
 	
-	private String websitename;
+	private String websiteName;
+	
+	private String userName;
 	 
 	private String email;
 	 

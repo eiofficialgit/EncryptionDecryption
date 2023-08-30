@@ -18,6 +18,7 @@ import com.ex.encrption.model.DepositWithdraw;
 import com.ex.encrption.model.Payload;
 import com.ex.encrption.model.Token;
 import com.ex.encrption.model.TokenResponse;
+import com.ex.encrption.model.WebsiteBean;
 import com.ex.encrption.model.validationModel;
 import com.ex.encrption.service.EncryptionService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -216,6 +217,22 @@ public class EncryptionServiceImpl implements EncryptionService {
 		try {
 			String decryptedJson = Crypt.decrypt(encoded, SECRET_KEY);
 			return new ObjectMapper().readValue(decryptedJson, DepositWithdraw.class);
+		} catch (Exception e) {
+			throw new RuntimeException("Error while decrypting payload: " + e.getMessage());
+		}
+	}
+
+	@Override
+	public String encryptWebsite(WebsiteBean webbean) throws Exception {
+		String payloadJson = new ObjectMapper().writeValueAsString(webbean);
+		return Crypt.encrypt(payloadJson, SECRET_KEY);
+	}
+
+	@Override
+	public WebsiteBean decryptWebsite(String encoded) {
+		try {
+			String decryptedJson = Crypt.decrypt(encoded, SECRET_KEY);
+			return new ObjectMapper().readValue(decryptedJson, WebsiteBean.class);
 		} catch (Exception e) {
 			throw new RuntimeException("Error while decrypting payload: " + e.getMessage());
 		}

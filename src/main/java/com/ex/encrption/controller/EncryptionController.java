@@ -19,6 +19,7 @@ import com.ex.encrption.model.EncodedPayload;
 import com.ex.encrption.model.Payload;
 import com.ex.encrption.model.Token;
 import com.ex.encrption.model.TokenResponse;
+import com.ex.encrption.model.WebsiteBean;
 import com.ex.encrption.model.validationModel;
 import com.ex.encrption.service.EncryptionService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -124,6 +125,18 @@ public class EncryptionController {
 	public DepositWithdraw decryptDepositWithdraw(@RequestBody EncodedPayload encode) {
 		String encoded = encode.getPayload();
 		return encryptionService.decryptDepositWithdraw(encoded);
+	}
+	
+	
+	@PostMapping("/encryptWebsiteBean")
+	public String encryptWebsiteBean(@RequestBody WebsiteBean webbean) throws Exception {
+		return encryptionService.encryptWebsite(webbean);
+	}
+	
+	@PostMapping("/decryptWebsiteBean")
+	public WebsiteBean decryptWebsiteBean(@RequestBody EncodedPayload encode) {
+		String encoded = encode.getPayload();
+		return encryptionService.decryptWebsite(encoded);
 	}
 	
 

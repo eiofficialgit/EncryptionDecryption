@@ -24,5 +24,6 @@ public class WebsiteBean {
 	Integer type;
 	
 	String parentWebId;
+	
 
 }

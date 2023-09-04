@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import com.ex.encrption.model.Crypt;
 import com.ex.encrption.model.DepositWithdraw;
+import com.ex.encrption.model.HyperMessage;
 import com.ex.encrption.model.Payload;
 import com.ex.encrption.model.Token;
 import com.ex.encrption.model.TokenResponse;
@@ -237,8 +238,23 @@ public class EncryptionServiceImpl implements EncryptionService {
 			throw new RuntimeException("Error while decrypting payload: " + e.getMessage());
 		}
 	}
-
 	
+   //////////////////////////encrypt&decryptHypermessage//////////////////////////////////
 
-	
+   @Override
+   public String encrptyHperMessage(HyperMessage encriptHyperMessagePayload) throws Exception {
+   String payloadJson = new ObjectMapper().writeValueAsString(encriptHyperMessagePayload);
+   return Crypt.encrypt(payloadJson, SECRET_KEY);
+   }
+
+    @Override
+    public HyperMessage decryptHyperMessage(String encoded) {
+    try {
+         String decryptedJson = Crypt.decrypt(encoded, SECRET_KEY);
+         return new ObjectMapper().readValue(decryptedJson, HyperMessage.class);
+        } 
+    catch (Exception e) {
+          throw new RuntimeException("Error while decrypting payload: " + e.getMessage());
+}
+}
 }

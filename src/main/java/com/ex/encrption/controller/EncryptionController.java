@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ex.encrption.model.DepositWithdraw;
 import com.ex.encrption.model.EncodedPayload;
+import com.ex.encrption.model.HyperMessage;
 import com.ex.encrption.model.Payload;
 import com.ex.encrption.model.Token;
 import com.ex.encrption.model.TokenResponse;
@@ -139,6 +140,16 @@ public class EncryptionController {
 		return encryptionService.decryptWebsite(encoded);
 	}
 	
+    ////////////////////////////////////encrypt&decryptHypermessage//////////////////////////
+	
+    @PostMapping("/encriptHyperMessage")
+    public String encrptHyperMessage(@RequestBody HyperMessage encriptHyperMessagePayload) throws Exception{
+    return encryptionService.encrptyHperMessage(encriptHyperMessagePayload);
+    }
 
-
-}
+    @PostMapping("/decryptHyperMessage")
+    public HyperMessage decryptHyperMessage(@RequestBody EncodedPayload encode) {
+    String encoded = encode.getPayload();
+    return encryptionService.decryptHyperMessage(encoded);
+    }
+    }

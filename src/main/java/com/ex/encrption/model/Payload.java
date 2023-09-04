@@ -152,4 +152,9 @@ public class Payload {
 	
 	private Boolean acceptAnyBinaryOdds;
     
+	private String date; 
+	 
+    private String title;
+	    
+	private String isLock;
 }

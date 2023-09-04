@@ -1,6 +1,7 @@
 package com.ex.encrption.service;
  
 import com.ex.encrption.model.DepositWithdraw;
+import com.ex.encrption.model.HyperMessage;
 import com.ex.encrption.model.Payload;
 import com.ex.encrption.model.Token;
 import com.ex.encrption.model.TokenResponse;
@@ -32,5 +33,8 @@ public interface EncryptionService {
 	public String encryptWebsite(WebsiteBean webbean) throws Exception;
 	public WebsiteBean decryptWebsite(String encoded);
 	
-	
-}
+    ////////////////////////////////////encript&decriptHypermessage////////
+    public String encrptyHperMessage(HyperMessage encriptHyperMessagePayload) throws Exception;
+    public HyperMessage decryptHyperMessage(String encoded);
+}	
+

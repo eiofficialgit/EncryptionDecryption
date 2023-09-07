@@ -157,4 +157,7 @@ public class Payload {
     private String title;
 	    
 	private String isLock;
+	
+    private String message;
+
 }

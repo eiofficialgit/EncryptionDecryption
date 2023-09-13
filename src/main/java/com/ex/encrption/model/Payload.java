@@ -30,6 +30,8 @@ public class Payload {
 	private String lastName;
 		 
 	private String userid;
+	
+	private String sessionId;
  
 	private String password;
 	

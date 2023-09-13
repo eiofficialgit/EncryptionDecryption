@@ -9,7 +9,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class validationModel {
 	 
+	private String id;
 	private String userid;
+	private Integer usertype;
 	private String websiteName;
 	private String userName;
 	private String password;
